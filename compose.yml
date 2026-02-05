@@ -2,10 +2,17 @@ name: local-ai
 
 services:
   app:
-    image: localai/localai
+    image: localai/localai:latest-gpu-nvidia-cuda-13
     restart: unless-stopped
     extra_hosts: ["host.docker.internal:host-gateway"]
     ports:
       - $APP_PORT:8080
     volumes:
-      - ./data:/app/backend/data
+      - ./data:/models
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [ gpu ]
