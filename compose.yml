@@ -1,0 +1,11 @@
+name: local-ai
+
+services:
+  app:
+    image: localai/localai
+    restart: unless-stopped
+    extra_hosts: ["host.docker.internal:host-gateway"]
+    ports:
+      - $APP_PORT:8080
+    volumes:
+      - ./data:/app/backend/data
