@@ -1,0 +1,13 @@
+name: Custom Z-Image-Turbo
+backend: cuda13-stablediffusion-ggml
+parameters:
+  model: Z-Image-Turbo-GGUF/z-image-turbo-Q4_K_M.gguf
+step: 8
+cfg_scale: 1
+options:
+  - diffusion_model
+  - llm_path:Qwen3-4B-Instruct/Qwen3-4B-Instruct-2507-Q4_K_M.gguf
+  - vae_path:ae.safetensors
+  - offload_params_to_cpu:true
+known_usecases:
+  - image
